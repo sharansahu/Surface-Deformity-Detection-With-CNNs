@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[86]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 import cv2
+import random
+import pickle
 
 DATADIR = "/Users/sunnysahu/Desktop/ML_Project/Bitmap_Generator_Training_Set"
 CATEGORIES = ["None", "Low", "Medium", "High"]
@@ -21,26 +19,8 @@ for category in CATEGORIES:
         break
     break
     
-
-
-# In[87]:
-
-
-print(img_array.shape)
-
-
-# In[88]:
-
-
 IMG_SIZE = 50
-
 new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
-plt.imshow(new_array, cmap="gray")
-plt.show()
-
-
-# In[89]:
-
 
 training_data = []
 
@@ -57,38 +37,13 @@ def create_training_data():
                 pass
 
 create_training_data()
-
-
-# In[90]:
-
-
-print(len(training_data))
-
-
-# In[91]:
-
-
-import random
-
 random.shuffle(training_data)
-
-
-# In[92]:
-
 
 for sample in training_data:
     print(sample[1])
 
-
-# In[93]:
-
-
 X = []
 y = []
-
-
-# In[94]:
-
 
 for features, label in training_data:
     X.append(features)
@@ -97,12 +52,6 @@ for features, label in training_data:
 X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
 y = np.array(y)
 
-
-# In[95]:
-
-
-import pickle
-
 pickle_out = open("X.pickle", "wb")
 pickle.dump(X, pickle_out)
 pickle_out.close()
@@ -110,10 +59,3 @@ pickle_out.close()
 pickle_out = open("y.pickle", "wb")
 pickle.dump(y, pickle_out)
 pickle_out.close()
-
-
-# In[ ]:
-
-
-
-
