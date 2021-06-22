@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[7]:
-
-
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
@@ -34,15 +30,7 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 
 hist = model.fit(X, y, batch_size = 32, epochs = 100, validation_split=0.1)
 
-
-# In[12]:
-
-
 model.evaluate(X, y)
-
-
-# In[13]:
-
 
 plt.plot(hist.history['accuracy'])
 plt.plot(hist.history['val_accuracy'])
@@ -60,16 +48,8 @@ plt.xlabel("Epoch")
 plt.legend(["Train", "Val"], loc='upper left')
 plt.show()
 
-
-# In[14]:
-
-
 predictions = model.predict(X[:15])
 predictions
-
-
-# In[15]:
-
 
 predictions_array = np.argmax(predictions, axis = 1)
 print("Predictions:")
@@ -93,17 +73,3 @@ for i in range(0,15):
         
     if (predictions_array[i] == 0):
         print("This deformity will have no impact on fuel economy")
-    
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
